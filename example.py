@@ -63,13 +63,13 @@ def main():
 
       pud.tiles = tiles
 
-  print 'Type:', pud.type
-  print 'ID:', hex(pud.id)
-  print 'Version:', pud.version
-  print 'Size:', pud.width, 'x', pud.height
-  print 'Description:', pud.description
-  print 'Terrain:', pud.terrain
-  print 'Players:', sum([1 for p in pud.players if p.type != 'unused' and p.race != 'neutral'])
+  print('Type:', pud.type)
+  print('ID:', hex(pud.id))
+  print('Version:', pud.version)
+  print('Size:', pud.width, 'x', pud.height)
+  print('Description:', pud.description)
+  print('Terrain:', pud.terrain)
+  print('Players:', sum([1 for p in pud.players if p.type != 'unused' and p.race != 'neutral']))
 
 if __name__ == '__main__':
   main()

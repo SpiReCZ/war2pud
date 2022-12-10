@@ -17,10 +17,8 @@ import struct
 
 import numpy
 
-import const
-import exception
-import util
-import model
+from war2pud import util, exception, const, model
+
 
 class TerrainType(object):
   """
@@ -157,14 +155,14 @@ class PUDFileReader(object):
 
     with open(self.filename, 'rb') as f:
       while True:
-        name = f.read(const.SECTIONNAME_LEN)
+        name = f.read(const.SECTIONNAME_LEN).decode("utf-8")
         if name == '':
           break
 
         length = f.read(const.SECTIONDATA_LEN)
         if length == '':
           raise exception.PudFileError('Unexpected end-of-file encountered at %d.' % f.tell())
-        length = struct.unpack('L', length)[0]
+        length = struct.unpack('i', length)[0]
 
         data = f.read(length)
         if data == '':
@@ -354,7 +352,7 @@ class PUDFileReader(object):
 
     # Oil concentration map (obsolete)
     elif name == 'OILM':
-      fmt = '='+str((self._mapwidth * self._mapheight) / struct.calcsize('=H'))+'H'
+      fmt = '='+str(int((self._mapwidth * self._mapheight) / struct.calcsize('=H')))+'H'
       unpacked = struct.unpack_from(fmt, data)
       return unpacked
 
@@ -368,7 +366,7 @@ class PUDFileReader(object):
     elif name == 'UNIT':
       fmt = '=1H 1H 1B 1B 1H'
       unit_size = struct.calcsize(fmt)
-      num_units = length / unit_size
+      num_units = int(length / unit_size)
 
       start = 0
       end = start + unit_size

@@ -11,13 +11,13 @@
 import os
 
 # Application imports.
-import const
-import model
-import util
 
 # 3rd party imports.
-import Image
 import numpy
+from PIL import Image
+
+from war2pud import util, const
+
 
 class Unit(object):
   """
@@ -145,7 +145,7 @@ class PUD(object):
     """
     Create a new `PUD` instance.
     """
-    self.players = [model.Player() for i in range(const.MAX_PLAYERS)]
+    self.players = [Player() for i in range(const.MAX_PLAYERS)]
 
   #-------------------------------------------------------------------------------------------------
 
