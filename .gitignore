@@ -28,3 +28,6 @@ develop-eggs
 
 War2xEd/
 *.pud
+puds/
+preview/
+metadata/

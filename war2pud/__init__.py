@@ -19,6 +19,16 @@ import numpy
 
 from war2pud import util, exception, const, model
 
+def join_arrays(*arrays):
+    result = []
+    for array in arrays:
+        if isinstance(array, list):
+            result.extend(array)
+        elif isinstance(array, int):
+            result.append(array)
+        else:
+            raise TypeError('Expected list or int, got %s' % type(array))
+    return result
 
 class TerrainType(object):
     """
@@ -101,6 +111,113 @@ class PUDFileReader(object):
   (int) Map height.
   """
     _mapheight = 0
+
+    _hints_peasant_units = [2, 3]
+
+    _hints_animal_unit = 57
+
+    _hints_infantry_units = [0, 1]
+    _hints_peasant_attack_units = [16, 17]
+    _hints_skeleton_unit = 55
+    _hints_infantry_basic_units = join_arrays(
+        _hints_infantry_units,
+        _hints_peasant_attack_units,
+        _hints_skeleton_unit
+    )
+
+    _hints_cavalry_units = [6, 7]
+    _hints_cavalry_upgraded_units = [12, 13]
+    _hints_cavalry_basic_units = join_arrays(
+        _hints_cavalry_units,
+        _hints_cavalry_upgraded_units
+    )
+
+    _hints_archer_units = [8, 9]
+    _hints_archer_upgraded_units = [18, 19]
+    _hints_archer_basic_units = join_arrays(
+        _hints_archer_units,
+        _hints_archer_upgraded_units
+    )
+
+    _hints_mage_units = [10, 11]
+
+    _hints_demolition_units = [14, 15]
+
+    _hints_siege_units = [4, 5]
+
+    _hints_naval_tanker_units = [26, 27]
+    _hints_naval_transport_units = [28, 29]
+    _hints_naval_attack_light_units = [30, 31]
+    _hints_naval_attack_heavy_units = [32, 33]
+    _hints_naval_stealth_units = [38, 39]
+    _hints_naval_basic_units = join_arrays(
+        _hints_naval_tanker_units,
+        _hints_naval_transport_units,
+        _hints_naval_attack_light_units,
+        _hints_naval_attack_heavy_units,
+        _hints_naval_stealth_units
+    )
+
+    _hints_air_scout_units = [40, 41]
+    _hints_air_attack_units = [42, 43]
+    _hints_daemon_unit = 56
+    _hints_air_basic_units = join_arrays(
+        _hints_air_scout_units,
+        _hints_air_attack_units,
+        _hints_daemon_unit
+    )
+
+    _hints_hero_alleria_unit = 20
+    _hints_hero_terongorenfiend_unit = 21
+    _hints_hero_kurdanandskyree_unit = 22
+    _hints_hero_dentarg_unit = 23
+    _hints_hero_khadgar_unit = 24
+    _hints_hero_gromhellscream_unit = 25
+    _hints_hero_deathwing_unit = 35
+    _hints_hero_turalyon_unit = 44
+    _hints_hero_eyeofkillrog_unit = 45
+    _hints_hero_danath_unit = 46
+    _hints_hero_khorgathbladefist_unit = 47
+    _hints_hero_chogall_unit = 49
+    _hints_hero_lothar_unit = 50
+    _hints_hero_guldan_unit = 51
+    _hints_hero_utherlightbringer_unit = 52
+    _hints_hero_zuljin_unit = 53
+    _hints_hero_units = join_arrays(
+        _hints_hero_alleria_unit,
+        _hints_hero_terongorenfiend_unit,
+        _hints_hero_kurdanandskyree_unit,
+        _hints_hero_dentarg_unit,
+        _hints_hero_khadgar_unit,
+        _hints_hero_gromhellscream_unit,
+        _hints_hero_deathwing_unit,
+        _hints_hero_turalyon_unit,
+        _hints_hero_eyeofkillrog_unit,
+        _hints_hero_danath_unit,
+        _hints_hero_khorgathbladefist_unit,
+        _hints_hero_chogall_unit,
+        _hints_hero_lothar_unit,
+        _hints_hero_guldan_unit,
+        _hints_hero_utherlightbringer_unit,
+        _hints_hero_zuljin_unit
+    )
+    _hints_building_units = [
+        58, 59, 60, 61, 62, 63, 64, 65, 66,
+        67, 68, 69, 70, 71, 72, 73, 74, 75, 76,
+        77, 78, 79, 80, 81, 82, 83, 84, 85, 86,
+        87, 88, 89, 90, 91, 96, 97, 98, 99
+    ]
+    _hints_building_special_units = [100, 101, 102]
+    _hints_building_walls_units = [103, 104]
+
+    _hints_goldmine_unit = 92
+    _hints_oil_patch_unit = 93
+    _hints_resource_units = join_arrays(
+        _hints_goldmine_unit,
+        _hints_oil_patch_unit
+    )
+
+    _hints_start_location_units = [94, 95]
 
     # -------------------------------------------------------------------------------------------------
 

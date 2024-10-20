@@ -34,12 +34,12 @@ def loadtextdb(filename):
   return rows
 
 
-def lookup_unit_type(id):
+def lookup_unit_type(uid):
   """
   Looks up the given unit type ID.
 
   Args:
-    id (int) The unit type ID.
+    uid (int) The unit type ID.
 
   Returns:
     (string) on success, otherwise None.
@@ -52,7 +52,7 @@ def lookup_unit_type(id):
     filename = os.path.join(basedir, '..', '..', 'data', 'units.txt')
     unit_db = loadtextdb(filename)
 
-  if id in unit_db:
-    return unit_db[id]['name']
+  if uid in unit_db:
+    return unit_db[uid]['name']
 
   return None
